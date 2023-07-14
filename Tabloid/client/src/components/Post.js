@@ -4,7 +4,7 @@ export default function Post({ post }) {
     return (
         <tr>
           <th scope="row">
-            {post.Title}
+            {post.title}
           </th>
           <td>
           {post.userProfile.firstName} {post.userProfile.lastName}
