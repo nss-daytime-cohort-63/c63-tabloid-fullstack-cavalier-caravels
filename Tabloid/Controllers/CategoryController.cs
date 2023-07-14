@@ -9,15 +9,15 @@ namespace Tabloid.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryRepository _categoryrepository;
-        public CategoryController(ICategoryRepository categoryrepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            _categoryrepository = categoryrepository;
+            _categoryRepository = categoryRepository;
         }
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_categoryrepository.GetAll());
+            return Ok(_categoryRepository.GetAll());
         }
     }
 }

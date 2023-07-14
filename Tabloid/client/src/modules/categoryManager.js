@@ -1,11 +1,13 @@
 import { getToken } from "./authManager";
 
-export const getAllVideos = () => {
+const categories = "./api/Category"
+
+export const getAllCategories = () => {
     return getToken().then((token) => {
         return fetch(categories, {
             method: "GET",
             headers: {
-                Authorizxation: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
             },
         }).then((resp) => {
             if (resp.ok) {

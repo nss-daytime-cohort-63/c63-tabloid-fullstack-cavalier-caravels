@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using Tabloid.Models;
 using Tabloid.Utils;
@@ -28,8 +29,8 @@ namespace Tabloid.Repositories
                         {
                             categories.Add(new Category()
                             {
-                                Id = DbUtils.GetInt(reader, "id"),
-                                Name = DbUtils.GetString(reader, "name"),
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "Name"),
                             });
                         }
                         return categories;
@@ -37,6 +38,22 @@ namespace Tabloid.Repositories
 
                 }
             }
+        }
+        public Post GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public void Add(Post post)
+        {
+            throw new NotImplementedException();
+        }
+        public void Update(Post post)
+        {
+            throw new NotImplementedException();
+        }
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
