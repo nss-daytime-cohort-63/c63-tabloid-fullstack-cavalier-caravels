@@ -16,6 +16,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
+          <Route path="category" element={<Category />} />
         </Route>
       </Routes>
     </main>
