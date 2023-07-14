@@ -18,7 +18,7 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId AS PostCatergoryId, p.UserProfileId,
+                    cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId AS PostCategoryId, p.UserProfileId,
                                         c.Id as CategoryId, c.[Name] AS CategoryName, u.Id AS UserId, u.DisplayName, u.FirstName, u.LastName, u.Email, u.CreateDateTime AS UserCreateDateTime, 
                                         u.ImageLocation AS UserImageLocation
                                        FROM Post p
@@ -48,14 +48,14 @@ namespace Tabloid.Repositories
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     FirstName = DbUtils.GetString(reader,"FirstName"),
                                     LastName = DbUtils.GetString(reader,"LastName"),
-                                    Email = DbUtils.GetString(reader,"Enail"),
+                                    Email = DbUtils.GetString(reader,"Email"),
                                     CreateDateTime = DbUtils.GetDateTime(reader,"UserCreateDateTime"),
                                     ImageLocation = DbUtils.GetString(reader,"UserImageLocation")
                                 },
                                 Category = new Category()
                                 {
                                     Id = DbUtils.GetInt(reader, "CategoryId"),
-                                    Name = DbUtils.GetString(reader, "CategpryName"),
+                                    Name = DbUtils.GetString(reader, "CategoryName"),
                                 }
                               
                             });

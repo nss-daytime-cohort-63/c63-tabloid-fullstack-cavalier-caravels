@@ -10,7 +10,7 @@ namespace Tabloid.Controllers
     {
         private readonly IPostRepository _postRepository;
 
-        public CategoryController(IPostRepository postRepository)
+        public PostController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
         }
