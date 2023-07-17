@@ -1,16 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { getAllPosts } from "../modules/postManager";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import Post from "./Post";
+import { useNavigate } from "react-router-dom";
 
 export default function PostList() {
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getAllPosts().then(setPosts);
     }, []);
 
+    const handleAddClick = (event) => {
+        event.preventDefault();
+        navigate("./Add")
+    }
     return (
+        <>
+        <Button onClick={handleAddClick}>Add new Post</Button>
         <Table>
             <thead>
                 <tr>
@@ -31,5 +39,6 @@ export default function PostList() {
                 ))}
             </tbody>
         </Table>
+        </>
     )
 }

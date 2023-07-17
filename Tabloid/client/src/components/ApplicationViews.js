@@ -9,6 +9,7 @@ import TagList from "./TagList";
 import PostDetails from "./PostDetails";
 import CategoryAddForm from "./CategoryAddForm";
 import TagAddForm from "./TagAddForm";
+import PostForm from "./PostForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -32,6 +33,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="Post">
             <Route index element={<PostList />} />
             <Route path=":id" element={<PostDetails />} />
+            <Route path="Add" element={<PostForm />} />
           </Route>
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
