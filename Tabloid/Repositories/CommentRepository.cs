@@ -24,9 +24,13 @@ namespace Tabloid.Repositories
 										Comment.UserProfileId, 
 										Comment.Subject,
 										Comment.Content, 
-										Comment.CreateDateTime
+										Comment.CreateDateTime,
+										UserProfile.ImageLocation,
+										UserProfile.DisplayName
 										from Comment
-										where PostId = @id";
+										join UserProfile on Comment.UserProfileId = UserProfile.Id
+										where Comment.PostId = @id
+										order by CreateDateTime";
 					cmd.Parameters.AddWithValue("@id", postId);
 					var reader = cmd.ExecuteReader();
 					List<Comment> comments = new List<Comment>();
@@ -40,7 +44,12 @@ namespace Tabloid.Repositories
 							UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
 							Subject = DbUtils.GetString(reader, "Subject"),
 							Content = DbUtils.GetString(reader, "Content"),
-							CreatedDateTime = DbUtils.GetDateTime(reader,"CreateDatetime")
+							CreatedDateTime = DbUtils.GetDateTime(reader, "CreateDatetime"),
+							User = new UserProfile()
+							{
+								DisplayName = DbUtils.GetString(reader,"DisplayName"),
+								ImageLocation = DbUtils.GetString(reader,"ImageLocation")
+							}
 						};
 						comments.Add(mycomment);
 					
