@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tabloid.Repositories;
+using Tabloid.Models;
 
 namespace Tabloid.Controllers
 {
@@ -19,6 +20,13 @@ namespace Tabloid.Controllers
         public IActionResult Get()
         {
             return Ok(_tagRepository.GetAll());
+        }
+
+        [HttpPost]
+        public IActionResult Add(Tag tag)
+        {
+            _tagRepository.AddTag(tag);
+            return CreatedAtAction("Get", new { id = tag.Id }, tag);
         }
     }
 }
