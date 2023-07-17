@@ -1,6 +1,9 @@
 import { Table } from "reactstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function Post({ post }) {
+    const navigate = useNavigate()
     return (
         <tr>
           <th scope="row">
@@ -11,6 +14,9 @@ export default function Post({ post }) {
           </td>
           <td>
             {post.category.name}
+          </td>
+          <td>
+           
           </td>
         </tr>     
     )

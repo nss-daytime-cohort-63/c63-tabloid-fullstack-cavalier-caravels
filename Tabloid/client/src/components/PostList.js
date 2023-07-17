@@ -23,6 +23,9 @@ export default function PostList() {
                     <th>
                         Category
                     </th>
+                    <th>
+                        actions
+                    </th>
                 </tr>
             </thead>
             <tbody>

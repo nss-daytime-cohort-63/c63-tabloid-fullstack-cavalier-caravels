@@ -6,7 +6,7 @@ using Tabloid.Utils;
 
 namespace Tabloid.Repositories
 {
-	public class CommentRepository : BaseRepository
+	public class CommentRepository : BaseRepository, ICommentRepository
 	{
 		public CommentRepository(IConfiguration configuration) : base(configuration)
 		{
@@ -24,7 +24,8 @@ namespace Tabloid.Repositories
 										Comment.UserProfileId, 
 										Comment.Subject,
 										Comment.Content, 
-										Comment.CreateDateTime 
+										Comment.CreateDateTime
+										from Comment
 										where PostId = @id";
 					cmd.Parameters.AddWithValue("@id", postId);
 					var reader = cmd.ExecuteReader();
@@ -38,7 +39,7 @@ namespace Tabloid.Repositories
 							PostId = DbUtils.GetInt(reader, "PostId"),
 							UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
 							Subject = DbUtils.GetString(reader, "Subject"),
-							Content = DbUtils.GetString(reader, "Context"),
+							Content = DbUtils.GetString(reader, "Content"),
 							CreatedDateTime = DbUtils.GetDateTime(reader,"CreateDatetime")
 						};
 						comments.Add(mycomment);
