@@ -14,16 +14,13 @@ const PostForm = () => {
         UserProfileId: 0
     };
 
+    const localTabloidUser = localStorage.getItem("")
+
     const [newPost, setNewPost] = useState(emptyPost)
     const navigate = useNavigate();
 
     const handleInputChange = (event) => {
-        const value = event.target.value;
-
-        const postCopy = 
-        {
-            
-        }
+       
     }
 
     return (
