@@ -30,7 +30,7 @@ namespace Tabloid.Repositories
 										from Comment
 										join UserProfile on Comment.UserProfileId = UserProfile.Id
 										where Comment.PostId = @id
-										order by CreateDateTime";
+										order by  CreateDateTime desc ";
 					cmd.Parameters.AddWithValue("@id", postId);
 					var reader = cmd.ExecuteReader();
 					List<Comment> comments = new List<Comment>();
