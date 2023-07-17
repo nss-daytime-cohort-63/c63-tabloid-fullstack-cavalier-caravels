@@ -61,7 +61,21 @@ namespace Tabloid.Repositories
         }
         public void Update(Category category)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using(var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Category
+                           SET Name = @Name
+                         WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Name", category.Name);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
         public void Delete(int id)
         {
