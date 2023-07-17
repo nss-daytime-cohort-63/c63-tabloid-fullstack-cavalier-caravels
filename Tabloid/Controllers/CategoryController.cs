@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Diagnostics.Contracts;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.Contracts;
+using Tabloid.Models;
 using Tabloid.Repositories;
 
 namespace Tabloid.Controllers
@@ -18,6 +20,12 @@ namespace Tabloid.Controllers
         public IActionResult Get()
         {
             return Ok(_categoryRepository.GetAll());
+        }
+        [HttpPost]
+        public IActionResult Add(Category category) 
+        { 
+            _categoryRepository.Add(category);
+            return CreatedAtAction("Get", new { id = category.Id }, category);
         }
     }
 }
