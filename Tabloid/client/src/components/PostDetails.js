@@ -15,20 +15,27 @@ const PostDetails = () => {
         return null
     }
 
+
+  const publishDate = new Date(post.publishDateTime);
+
+  const formattedDate = `${publishDate.toLocaleString("en-US", {
+    month: "long",
+  })} ${publishDate.getDate()}, ${publishDate.getFullYear()}`;
+
     return (
         <div className="container">
         <div className="row justify-content-center">
           <div className="col-sm-12 col-lg-6">
-            <img src={post.imageLocation}/>
+          {
+          post.imageLocation ? (<img src={post.imageLocation} alt="Post Image" />) : ""
+          }
             <h3><strong>{post.title}</strong></h3>
             <h5>by: {post.userProfile.displayName}</h5>
-            <h6>{post.publishDateTime}</h6>
-
+            <h6>{formattedDate}</h6>
             <p>
             {post.content}
             </p>
-            
-            {}
+            <strong><h6>Comments:</h6></strong>
           </div>
         </div>
       </div>

@@ -20,7 +20,11 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="Category" element={<CategoryList />} />
-          <Route path="Post" element={<PostList />}/>
+          <Route path="Tag" element={<TagList />} />
+          <Route path="Post">
+            <Route index element={<PostList />} />
+            <Route path=":id" element={<PostDetails />} />
+          </Route>
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
