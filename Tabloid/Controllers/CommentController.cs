@@ -5,7 +5,7 @@ namespace Tabloid.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HelloController : ControllerBase
+    public class CommentController : ControllerBase
     {
         [HttpGet]
         public IActionResult Hello()
