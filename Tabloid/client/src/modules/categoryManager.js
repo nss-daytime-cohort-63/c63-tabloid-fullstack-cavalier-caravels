@@ -23,7 +23,7 @@ export const getAllCategories = () => {
 
 export const addCategory = (category) => {
     return getToken().then((token) => {
-        fetch(categories, {
+        return fetch(categories, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ export const addCategory = (category) => {
                 throw new Error("Unauthorized");
             } else {
                 throw new Error(
-                    "An unknown error occurred while trying to save a new category.",
+                    "An unknown error occurred while trying to save a new category."
                 );
             }
         });

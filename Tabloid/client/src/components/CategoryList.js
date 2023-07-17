@@ -22,7 +22,7 @@ export default function CategoryList() {
                 <Category key={c.id} category={c} />
             ))}
             <form>
-                <button onClick={handleChange}>Add New Category</button>
+                <button onClick={handleChange}>Create Category</button>
             </form>
         </section>
     );
