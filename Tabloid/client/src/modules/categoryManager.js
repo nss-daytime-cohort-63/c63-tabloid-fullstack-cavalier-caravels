@@ -1,6 +1,6 @@
 import { getToken } from "./authManager";
 
-const categories = "./api/Category"
+const categories = "/api/Category"
 
 export const getAllCategories = () => {
     return getToken().then((token) => {
@@ -15,6 +15,29 @@ export const getAllCategories = () => {
             } else {
                 throw new Error(
                     "An unknown error occurred while trying to get videos."
+                );
+            }
+        });
+    });
+};
+
+export const addCategory = (category) => {
+    return getToken().then((token) => {
+        return fetch(categories, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(category),
+        }).then((resp) => {
+            if (resp.ok) {
+                return resp.json();
+            } else if (resp.status === 401) {
+                throw new Error("Unauthorized");
+            } else {
+                throw new Error(
+                    "An unknown error occurred while trying to save a new category."
                 );
             }
         });
