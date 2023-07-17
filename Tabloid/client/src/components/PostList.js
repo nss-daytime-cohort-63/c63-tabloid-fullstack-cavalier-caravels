@@ -30,7 +30,7 @@ export default function PostList() {
             </thead>
             <tbody>
                 {posts.map((p) => (
-                    <Post key={p.id} post={p} />
+                    <Post key={p.id} post={p} postId={p.Id} />
                 ))}
             </tbody>
         </Table>
