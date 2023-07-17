@@ -4,8 +4,10 @@ import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
 import CategoryList from "./CategoryList";
-import CategoryAddForm from "./CategoryAddForm";
 import PostList from "./PostList";
+import TagList from "./TagList";
+import PostDetails from "./PostDetails";
+import CategoryAddForm from "./CategoryAddForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -22,7 +24,11 @@ export default function ApplicationViews({ isLoggedIn }) {
             <Route index element={isLoggedIn ? <CategoryList /> : <Navigate to="/login" />} />
             <Route path="Add" element={<CategoryAddForm />} />
           </Route>
-          <Route path="Post" element={<PostList />} />
+          <Route path="Tag" element={<TagList />} />
+          <Route path="Post">
+            <Route index element={<PostList />} />
+            <Route path=":id" element={<PostDetails />} />
+          </Route>
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
