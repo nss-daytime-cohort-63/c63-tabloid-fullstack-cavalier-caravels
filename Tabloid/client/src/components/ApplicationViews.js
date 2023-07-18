@@ -11,7 +11,7 @@ import CategoryAddForm from "./CategoryAddForm";
 import TagAddForm from "./TagAddForm";
 import PostForm from "./PostForm";
 
-export default function ApplicationViews({ isLoggedIn }) {
+export default function ApplicationViews({ isLoggedIn, userProfile }) {
   return (
     <main>
       <Routes>
@@ -33,7 +33,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="Post">
             <Route index element={<PostList />} />
             <Route path=":id" element={<PostDetails />} />
-            <Route path="Add" element={<PostForm />} />
+            <Route path="Add" element={<PostForm userProfile={userProfile}/> } />
           </Route>
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
