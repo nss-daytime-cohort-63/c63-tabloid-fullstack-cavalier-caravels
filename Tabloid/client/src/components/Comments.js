@@ -16,10 +16,16 @@ const CommentList =( {postId} )=>{
 
     },[])
 
+    const datefix =(comment)=>{
+            var date =  new Date(comment.createdDateTime)
+            //const [dayMo, ] = date.split("T")
+            const formattedDate = date.toLocaleString("en-US", 
+            {month: "long", day:"numeric", year:"numeric"})
+                       
+        return formattedDate
+    }
+
     const mapfunc =()=>{
-
-        
-
         return comments?.map((comment)=>(
             <Card key={comment.id}>
                 <CardBody><h4><img src={comment?.user.imageLocation} 
@@ -28,7 +34,7 @@ const CommentList =( {postId} )=>{
                 
             <h5>{comment.subject}</h5>
             {comment.content}
-            <p>on {comment.createdDateTime}</p></CardBody>
+            <p>on {datefix(comment)}</p></CardBody>
             </Card>
         ))
     }
