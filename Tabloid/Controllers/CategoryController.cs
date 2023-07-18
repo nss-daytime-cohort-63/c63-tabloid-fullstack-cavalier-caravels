@@ -23,16 +23,16 @@ namespace Tabloid.Controllers
             return Ok(_categoryRepository.GetAll());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            var category = _categoryRepository.GetById(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            return Ok(category);
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult Get(int id)
+        //{
+        //    var category = _categoryRepository.GetById(id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(category);
+        //}
 
         [HttpPost]
         public IActionResult Add(Category category)
