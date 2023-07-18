@@ -14,7 +14,7 @@ const PostForm = ({ userProfile }) => {
         ImageLocation: "",
         CreateDateTime: currentDate,
         PublishDateTime: currentDate,
-        isAprroved: false,
+        isAprroved: true,
         CategoryId: 0,
         UserProfileId: userProfile.id
     };

@@ -42,7 +42,7 @@ export const getPost = (id) => {
 
 export const addPost = (post) => {
     return getToken().then((token) => {
-        return fetch(postsURL, {
+        return fetch(`${postsURL}/add`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,

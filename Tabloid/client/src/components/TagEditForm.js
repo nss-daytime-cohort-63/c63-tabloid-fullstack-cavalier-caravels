@@ -1,28 +1,30 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { addTag } from "../modules/tagManager";
+import { editTag } from "../modules/tagManager";
 
-const TagAddForm = () => {
-    const emptyTag = {
+const TagEditForm = () => {
+    const { id } = useParams();
+    const [tag, updateTag] = useState({
+        Id: id,
         Name: '',
-    };
+    });
 
-    const [tag, setTag] = useState(emptyTag);
     const navigate = useNavigate();
 
     const handleInputChange = (evt) => {
         const value = evt.target.value;
 
         const tagCopy = {
+            Id: id,
             Name: value
-        }
-        setTag(tagCopy);
-    };
+        };
+        updateTag(tagCopy);
+    }
 
     const handleSave = (evt) => {
         evt.preventDefault();
-        addTag(tag)
+        editTag(tag)
             .then(() => navigate("/Tag"))
     };
     return (
@@ -41,7 +43,7 @@ const TagAddForm = () => {
                 <Button onClick={handleSave}>Save</Button>
             </FormGroup>
         </Form>
-    );
-};
+    )
+}
 
-export default TagAddForm;
+export default TagEditForm;
