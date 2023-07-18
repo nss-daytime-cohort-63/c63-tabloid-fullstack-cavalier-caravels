@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPost } from "../modules/postManager.js";
+import CommentList from "./Comments.js";
 
 
 const PostDetails = () => {
@@ -36,6 +37,7 @@ const PostDetails = () => {
             {post.content}
           </p>
           <strong><h6>Comments:</h6></strong>
+          <CommentList postId={id}/>
         </div>
       </div>
     </div>
