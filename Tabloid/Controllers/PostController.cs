@@ -33,7 +33,7 @@ namespace Tabloid.Controllers
             return Ok(post);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Post(Post post)
         {
             _postRepository.Add(post);
