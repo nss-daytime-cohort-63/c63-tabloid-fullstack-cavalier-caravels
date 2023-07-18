@@ -52,6 +52,16 @@ export const logout = () => {
   firebase.auth().signOut()
 };
 
+export const me = () => {
+  return getToken().then((token) =>
+    fetch(`${_apiUrl}/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((resp) => resp.json()),
+  );
+};
 
 export const register = (userProfile, password) => {
   return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
@@ -67,3 +77,7 @@ export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
     onLoginStatusChangeHandler(!!user);
   });
 };
+
+
+
+

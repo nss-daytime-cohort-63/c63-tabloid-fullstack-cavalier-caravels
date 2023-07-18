@@ -34,7 +34,7 @@ namespace Tabloid.Controllers
         //    return Ok(category);
         //}
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Add(Category category)
         {
             _categoryRepository.Add(category);

@@ -39,3 +39,26 @@ export const getPost = (id) => {
         });
     });
 };
+
+export const addPost = (post) => {
+    return getToken().then((token) => {
+        return fetch(`${postsURL}/add`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(post),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else if (res.status === 401) {
+                throw new Error("Unathorized");
+            } else {
+                throw new Error(
+                    "Dagnabit! You can't add that!"
+                );
+            }
+        });
+    });
+};
