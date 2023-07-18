@@ -25,7 +25,7 @@ namespace Tabloid.Repositories
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         var categories = new List<Category>();
-                        while(reader.Read())
+                        while (reader.Read())
                         {
                             categories.Add(new Category()
                             {
@@ -60,7 +60,7 @@ namespace Tabloid.Repositories
             using (var conn = Connection)
             {
                 conn.Open();
-                using(var cmd = conn.CreateCommand())
+                using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
                         UPDATE Category
@@ -75,6 +75,11 @@ namespace Tabloid.Repositories
             }
         }
         public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Category GetById(int id)
         {
             throw new NotImplementedException();
         }

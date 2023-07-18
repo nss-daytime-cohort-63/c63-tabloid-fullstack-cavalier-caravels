@@ -6,13 +6,15 @@ import { addPost } from "../modules/postManager";
 
 
 const PostForm = ({ userProfile }) => {
+    const currentDate = new Date(Date.now()).toISOString();
+
     const emptyPost = {
         Title: "",
         Content: "",
         ImageLocation: "",
-        CreateDateTime: Date.now(),
-        PublishDateTime: Date.now(),
-        IsApproved: 1,
+        CreateDateTime: currentDate,
+        PublishDateTime: currentDate,
+        isAprroved: false,
         CategoryId: 0,
         UserProfileId: userProfile.id
     };
@@ -34,7 +36,7 @@ const PostForm = ({ userProfile }) => {
 
 
         if (key === "CategoryId") {
-            newPostCopy[key] = parseInt(value); // Parse the value as an integer
+            newPostCopy[key] = parseInt(value); 
         } else {
             newPostCopy[key] = value;
         }
