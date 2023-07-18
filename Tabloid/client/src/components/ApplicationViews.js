@@ -10,6 +10,7 @@ import PostDetails from "./PostDetails";
 import CategoryAddForm from "./CategoryAddForm";
 import TagAddForm from "./TagAddForm";
 import TagEditForm from "./TagEditForm";
+import CategoryEditForm from "./CategoryEditForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -25,6 +26,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route path="Category">
             <Route index element={isLoggedIn ? <CategoryList /> : <Navigate to="/login" />} />
             <Route path="Add" element={<CategoryAddForm />} />
+            <Route path="Edit/:id" element={<CategoryEditForm />} />
           </Route>
           <Route path="Tag">
             <Route index element={isLoggedIn ? <TagList /> : <Navigate to="/login" />} />
