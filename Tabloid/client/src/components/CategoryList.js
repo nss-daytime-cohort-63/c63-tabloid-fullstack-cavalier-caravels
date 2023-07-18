@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Category from "./Category";
 import { getAllCategories } from "../modules/categoryManager";
 import { Navigate, useNavigate } from "react-router-dom";
+import CategoryAddForm from "./CategoryAddForm";
 
 export default function CategoryList() {
     const [categories, setCategories] = useState([]);
@@ -21,9 +22,7 @@ export default function CategoryList() {
             {categories.map((c) => (
                 <Category key={c.id} category={c} />
             ))}
-            <form>
-                <button onClick={handleChange}>Create Category</button>
-            </form>
+            <CategoryAddForm />
         </section>
     );
 }
