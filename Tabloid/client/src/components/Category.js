@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 
 export default function Category({ category }) {
@@ -6,8 +7,7 @@ export default function Category({ category }) {
             <CardBody>
                 <strong>{category.name}</strong>
                 <p align="right">
-                    <input type="button" value="Edit" />
-                    <input type="button" value="Delete" />
+                    <Link to={`./Edit/${category.id}`}>Edit</Link>
                 </p>
             </CardBody>
         </Card >

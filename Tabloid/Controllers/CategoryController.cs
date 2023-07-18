@@ -16,17 +16,31 @@ namespace Tabloid.Controllers
         {
             _categoryRepository = categoryRepository;
         }
+
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_categoryRepository.GetAll());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var category = _categoryRepository.GetById(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
+        }
+
         [HttpPost]
         public IActionResult Add(Category category)
         {
             _categoryRepository.Add(category);
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
+
         [HttpPut("{id}")]
         public IActionResult Put(int id, Category category)
         {
