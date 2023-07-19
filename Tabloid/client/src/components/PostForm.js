@@ -16,7 +16,12 @@ const PostForm = ({ userProfile }) => {
         PublishDateTime: currentDate,
         isAprroved: true,
         CategoryId: 0,
-        UserProfileId: userProfile.id
+        UserProfileId: userProfile.id,
+        UserProfile: userProfile,
+        Category: {
+            id: 5,
+            Name: "Cooking"
+        }
     };
 
     const [categories, setCategories] = useState([])

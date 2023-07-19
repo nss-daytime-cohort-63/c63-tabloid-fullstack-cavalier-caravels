@@ -24,8 +24,7 @@ namespace Tabloid.Repositories
                                        FROM Post p
                                        LEFT JOIN Category c ON p.CategoryId = c.id
                                        LEFT JOIN UserProfile u ON p.UserProfileId = u.id
-                                       WHERE IsApproved = 1 AND PublishDateTime < SYSDATETIME()
-                                       ORDER BY PublishDateTime DESC";
+                                       ORDER BY p.PublishDateTime DESC";
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         var posts = new List<Post>();
@@ -39,7 +38,7 @@ namespace Tabloid.Repositories
                                 ImageLocation = DbUtils.GetString(reader,"ImageLocation"),
                                 CreateDateTime = DbUtils.GetDateTime(reader,"CreateDateTime"),
                                 PublishDateTime = DbUtils.GetDateTime(reader,"PublishDateTime"),
-                                IsApproved = DbUtils.ReferenceEquals(reader, "IsApproved"),
+                                IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved")),
                                 CategoryId = DbUtils.GetInt(reader,"PostCategoryId"),
                                 UserProfileId = DbUtils.GetInt(reader,"UserProfileId"),
                                 UserProfile = new UserProfile()
@@ -97,7 +96,7 @@ namespace Tabloid.Repositories
                                     ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                                     CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                                     PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
-                                    IsApproved = DbUtils.ReferenceEquals(reader, "IsApproved"),
+                                    IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved")),
                                     CategoryId = DbUtils.GetInt(reader, "PostCategoryId"),
                                     UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                     UserProfile = new UserProfile()
