@@ -118,7 +118,53 @@ namespace Tabloid.Repositories
 
         public Post GetByUserId(int userId)
         {
-            throw new NotImplementedException();
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId AS PostCategoryId, p.UserProfileId, 
+                                        u.Id AS UserId, u.DisplayName, u.FirstName, u.LastName,
+                                        c.Id AS CommentId, c.Subject, c.Content as CommentContent, c.CreateDateTime AS CommentCreateDateTime, c.PostId
+                                        FROM Post p
+                                        LEFT JOIN UserProfile u ON p.UserProfileId = u.id
+                                        LEFT JOIN Comment c ON p.Id = c.PostId
+                                        WHERE p.UserProfileId = @UserProfileId";
+                    DbUtils.AddParameter(cmd, "@UserProfileId", userId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Post post = null;
+                        while (reader.Read())
+                        {
+                            if (post == null)
+                            {
+                                post = new Post()
+                                {
+                                    Id = id,
+                                    Title = DbUtils.GetString(reader, "Title"),
+                                    Content = DbUtils.GetString(reader, "Content"),
+                                    ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                                    CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                                    PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
+                                    IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved")),
+                                    CategoryId = DbUtils.GetInt(reader, "PostCategoryId"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                                    UserProfile = new UserProfile()
+                                    {
+                                        Id = DbUtils.GetInt(reader, "UserId"),
+                                        DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                        FirstName = DbUtils.GetString(reader, "FirstName"),
+                                        LastName = DbUtils.GetString(reader, "LastName"),
+                                    }
+                                };
+                            }
+
+                        }
+                        return post;
+                    }
+                }
+            }
         }
 
         public void Add(Post post)
