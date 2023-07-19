@@ -9,7 +9,7 @@ namespace Tabloid.Repositories
         void Delete(int id);
         List<Post> GetAll();
         Post GetById(int id);
-        Post GetByUserId(int userId);
+        List<Post> GetByUserId(int userId);
         void Update(Post post);
     }
 }

@@ -12,6 +12,7 @@ import TagAddForm from "./TagAddForm";
 import TagEditForm from "./TagEditForm";
 import CategoryEditForm from "./CategoryEditForm";
 import PostForm from "./PostForm";
+import MyPosts from "./MyPosts";
 
 export default function ApplicationViews({ isLoggedIn, userProfile }) {
   return (
@@ -39,6 +40,7 @@ export default function ApplicationViews({ isLoggedIn, userProfile }) {
             <Route path=":id" element={<PostDetails />} />
             <Route path="Add" element={<PostForm userProfile={userProfile}/> } />
           </Route>
+            <Route path="MyPosts" element={<MyPosts  userProfile={userProfile}/>}/>
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
