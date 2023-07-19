@@ -33,6 +33,12 @@ namespace Tabloid.Controllers
             return Ok(post);
         }
 
+        [HttpGet("MyPosts/{userId}")]
+        public IActionResult GetUserPosts(int userId)
+        {
+            return Ok(_postRepository.GetByUserId(userId));
+        }
+
         [HttpPost("add")]
         public IActionResult Post(Post post)
         {

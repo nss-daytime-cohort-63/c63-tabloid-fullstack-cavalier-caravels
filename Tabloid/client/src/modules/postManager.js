@@ -21,6 +21,25 @@ export const getAllPosts = () => {
     });
 };
 
+export const getUserPosts = (userId) => {
+    return getToken().then((token) => {
+        return fetch(`${postsURL}/MyPosts/${userId}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(
+                    "Screwed up your fetch call homeskillet!"
+                );
+            }
+        });
+    });
+};
+
 export const getPost = (id) => {
     return getToken().then((token) => {
         return fetch(`${postsURL}/${id}`, {
